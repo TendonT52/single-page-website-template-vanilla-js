@@ -1,0 +1,104 @@
+body,
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	font-family: "Roboto", sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.main-block {
+	background-color: aqua;
+	margin: 10px;
+	padding: 10px;
+	width: 250px;
+}
+
+.like {
+	background-color: green;
+	padding: 10px;
+}
+
+.Unlike {
+	background-color: red;
+	padding: 10px;
+}
+
+.sub-block {
+	background-color: rgba(255, 255, 255, 0.445);
+	padding: 10px;
+	margin-bottom: 5px;
+}
+
+.add-sub-block {
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.445);
+	padding: 10px;
+	margin-bottom: 5px;
+}
+
+.add-main-block {
+	background-color: aqua;
+	margin: 20px;
+	padding: 10px;
+	width: 250px;
+}
+
+.top-name {
+	background-color: rgb(228, 243, 144);
+	padding: 20px;
+	margin-bottom: 5px;
+}
+
+.add-sub-block select {
+  display: none; 
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
