@@ -18,12 +18,27 @@ const firebaseConfig = {
 	appId: "1:688361058297:web:98fa7184768936e5dbd728",
 };
 
+export let data = new Map();
 export let app;
 export let db;
 export let graphRef;
 
-export function initFireBase() {
+export async function initFireBase() {
 	app = initializeApp(firebaseConfig);
 	db = getFirestore(app);
 	graphRef = collection(db, "graph");
+}
+
+export async function load_AllData() {
+	const querySnapshot = await getDocs(collection(db, "graph"));
+	querySnapshot.forEach((doc) => {
+		data.set(doc.id, { like: doc.data().like, dislike: doc.data().dislike });
+	});
+}
+
+export async function addDataToDB(block) {
+	await setDoc(doc(graphRef, block.name), {
+		like: block.like,
+		dislike: block.dislike,
+	});
 }
