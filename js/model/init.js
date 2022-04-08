@@ -20,10 +20,10 @@ const firebaseConfig = {
 
 export let app;
 export let db;
-export let graph;
+export let graphRef;
 
 export function initFireBase() {
 	app = initializeApp(firebaseConfig);
 	db = getFirestore(app);
-	graph = collection(db, "graph");
+	graphRef = collection(db, "graph");
 }

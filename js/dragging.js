@@ -1,8 +1,33 @@
-import { main_block, add_main_block } from "./selectors.js";
+import {
+	main_block,
+	add_main_block,
+	container,
+	mid_block,
+	sub_block,
+	top_name,
+} from "./selectors.js";
 
 let draggingSubBlock;
 let draggingMainBlock;
 let draggingNameBlock;
+
+export function update_dragging() {
+	sub_block.forEach((block) => {
+		addClassDraggingSubBlock(block);
+	});
+
+	top_name.forEach((block) => {
+		addClassDraggingMainBlock(block);
+	});
+
+	mid_block.forEach((mid_block) => {
+		updateMidBlock(mid_block);
+	});
+
+	container.forEach((main_block) => {
+		updateContainer(main_block);
+	});
+}
 
 export function addClassDraggingSubBlock(block) {
 	block.addEventListener("dragstart", (e) => {
@@ -49,7 +74,6 @@ export function updateMidBlock(mid_block) {
 	});
 }
 
-
 export function updateContainer(container) {
 	container.addEventListener("dragover", (e) => {
 		e.preventDefault();
@@ -78,7 +102,7 @@ export function updateContainer(container) {
 		if (blockAfterDraggingBlock) {
 			container.insertBefore(draggingMainBlock, blockAfterDraggingBlock);
 		} else {
-			container.insertBefore(draggingMainBlock, add_main_block );
+			container.insertBefore(draggingMainBlock, add_main_block);
 		}
 	});
 }

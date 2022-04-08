@@ -5,7 +5,7 @@ export let sub_block;
 export let add_main_block;
 export let top_name;
 
-export function update() {
+export function update_selector() {
 	container = document.querySelectorAll(".container");
 	main_block = document.querySelectorAll(".main-block");
 	mid_block = document.querySelectorAll(".mid-block");

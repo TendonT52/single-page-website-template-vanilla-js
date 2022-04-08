@@ -1,21 +1,23 @@
+import {
+	doc,
+	getDoc,
+	setDoc,
+	query,
+	where,
+	collection,
+} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { db, graphRef } from "./init.js";
 
-
-// await setDoc(doc(graph, "name2"), {
-// 	like: ["name1", "name2"],
-// 	unlike: [],
-// });
-
-// await setDoc(doc(graph, "name1"), {
-// 	like: ["name2"],
-// 	unlike: ["name3"],
-// });
-
-// await setDoc(doc(graph, "name3"), {
-// 	like: [],
-// 	unlike: ["name1", "name2"],
-// });
-
-// const querySnapshot = await getDocs(collection(db, "graph"));
-// querySnapshot.forEach((doc) => {
-//   console.log(doc.id, " => ", doc.data());
-// });
+export async function addBlockToDB(block) {
+	const docRef = doc(graphRef, "testname2");
+	// const docSnap = await getDoc(docRef);
+	// if (docSnap.exists()) {
+	// 	return false;
+	// } else {
+		await setDoc(doc(graphRef, "testname2"), {
+			like: block.like,
+			dislike: block.dislike,
+		});
+	// 	return true;
+	// }
+}

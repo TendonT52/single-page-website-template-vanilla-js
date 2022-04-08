@@ -3,9 +3,11 @@ import {
 	addClassDraggingSubBlock,
 	updateContainer,
 	updateMidBlock,
+	update_dragging,
 } from "./dragging.js";
 import { dropdown } from "./dropdown.js";
-import { CreateMainBlock } from "./generate.js";
+import { CreateMainBlock, CreateMainBlock1 } from "./generate.js";
+import { addBlockToDB } from "./model/add.js";
 import { getAllData } from "./model/get.js";
 import { initFireBase } from "./model/init.js";
 // import { initFireBase } from "./model/init.js";
@@ -15,45 +17,29 @@ import {
 	mid_block,
 	sub_block,
 	top_name,
-	update,
+	update_selector,
 } from "./selectors.js";
 
 initFireBase();
-update();
+update_selector();
+update_dragging();
 // dropdown();
 
-sub_block.forEach((block) => {
-	addClassDraggingSubBlock(block);
-});
-
-top_name.forEach((block) => {
-	addClassDraggingMainBlock(block);
-});
-
-mid_block.forEach((mid_block) => {
-	updateMidBlock(mid_block);
-});
-
-container.forEach((main_block) => {
-	updateContainer(main_block);
-});
-
 add_main_block.addEventListener("click", function (event) {
-	container[0].insertBefore(CreateMainBlock(), add_main_block);
-	update();
+	container[0].insertBefore(
+		CreateMainBlock1({
+			name: "testname",
+			like: ["like1", "like2"],
+			dislike: ["dislike1", "dislike2"],
+		}),
+		add_main_block
+	);
+	update_selector();
+	update_dragging();
 });
 
-// getAllData().forEach(doc => {
-// 	console.log(doc.id, " => ", doc.data());
-// })
-
-// getAllData().then((e) => {
-// 	e.forEach((doc) => {
-// 		console.log(doc.id, " => ", doc.data());
-// 	});
-// });
-
-// data.forEach((doc) => {
-// 	// doc.data() is never undefined for query doc snapshots
-// 	console.log(doc.id, " => ", doc.data());
-// });
+addBlockToDB({
+	name: "testname1",
+	like: ["like1",, "like3"],
+	dislike: ["dislike1", "dislike2"],
+});
