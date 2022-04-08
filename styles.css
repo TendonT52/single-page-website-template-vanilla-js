@@ -16,22 +16,28 @@ html {
 	margin: 10px;
 	padding: 10px;
 	width: 250px;
+	border-radius: 15px 15px 15px 15px;
 }
 
 .like {
 	background-color: green;
 	padding: 10px;
+	margin: 10px ;
+	border-radius: 15px 15px 15px 15px;
 }
 
 .dislike {
 	background-color: red;
 	padding: 10px;
+	margin: 10px ;
+	border-radius: 15px 15px 15px 15px;
 }
 
 .sub-block {
 	background-color: rgba(255, 255, 255, 0.445);
 	padding: 10px;
 	margin-bottom: 5px;
+	border-radius: 10px 10px 10px 10px;
 }
 
 .add-sub-block {
@@ -39,6 +45,7 @@ html {
 	background-color: rgba(255, 255, 255, 0.445);
 	padding: 10px;
 	margin-bottom: 5px;
+	border-radius: 10px 10px 10px 10px;
 }
 
 .add-main-block {
@@ -46,12 +53,17 @@ html {
 	margin: 20px;
 	padding: 10px;
 	width: 250px;
+	border-radius: 15px 15px 15px 15px;
 }
 
 .top-name {
 	background-color: rgb(228, 243, 144);
 	padding: 20px;
 	margin-bottom: 5px;
+	border-radius: 15px 45px 15px 45px;
+	/* (shadow)
+	box-shadow: 5px 5px 30px rgba(6, 6, 6, 0.5);
+	*/
 }
 
 .add-sub-block select {
