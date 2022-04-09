@@ -22,9 +22,7 @@ export function CreateMainBlock(block) {
 	});
 	main.appendChild(like);
 
-	const addLike = document.createElement("div");
-	addLike.classList.add("add-sub-block");
-	addLike.insertAdjacentText("beforeend", "+");
+	const addLike = CreateDropDownBlock();
 	like.appendChild(addLike);
 
 	const dislike = document.createElement("div");
@@ -39,10 +37,31 @@ export function CreateMainBlock(block) {
 	});
 	main.appendChild(dislike);
 
-	const addUnLike = document.createElement("div");
-	addUnLike.classList.add("add-sub-block");
-	addUnLike.insertAdjacentText("beforeend", "+");
-	dislike.appendChild(addUnLike);
-
+	const adddisLike = CreateDropDownBlock();
+	dislike.appendChild(adddisLike);
 	return main;
+}
+
+export function CreateDropDownItem(name){
+	const item = document.createElement("div");
+	item.classList.add("dropdown-item");
+	item.insertAdjacentText("beforeend", name);
+	return item;
+}
+
+export function CreateDropDownBlock(){
+	const dropdown = document.createElement("div");
+	dropdown.classList.add("dropdown");
+
+	const input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("placeholder", "Add...");
+	input.classList.add("myInput");
+	dropdown.appendChild(input);
+
+	const dropdown_content = document.createElement("div");
+	dropdown_content.classList.add("dropdown-content");
+	dropdown.appendChild(dropdown_content);
+
+	return dropdown;
 }

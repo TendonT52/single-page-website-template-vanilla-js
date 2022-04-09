@@ -5,8 +5,8 @@ import {
 	updateMidBlock,
 	update_dragging,
 } from "./dragging.js";
-import { dropdown } from "./dropdown.js";
-import { CreateMainBlock } from "./generate.js";
+import { config_dropdown } from "./dropdown.js";
+import { CreateDropDownBlock, CreateMainBlock } from "./generate.js";
 import { initFireBase, load_AllData, data, addDataToDB } from "./model.js";
 import {
 	add_main_block,
@@ -28,28 +28,21 @@ load_AllData().then(() => {
 	);
 	update_selector();
 	update_dragging();
+	container[0].appendChild(CreateDropDownBlock())
+	config_dropdown();
 });
 
-// dropdown();
+update_dropdown();
 
-add_main_block.addEventListener("click", function (event) {
-	container[0].insertBefore(
-		CreateMainBlock({
-			name: "testname",
-			like: ["like1", "like2"],
-			dislike: ["dislike1", "dislike2"],
-		}),
-		add_main_block
-	);
-	update_selector();
-	update_dragging();
-});
-
-// console.log("qwe");
-// addDataToDB({
-// 	name: "testname",
-// 	like: ["like1", "like2"],
-// 	dislike: ["dislike1", "dislike2"],
-// }).then(() => {
-// 	data.forEach((value, key) => console.log(key, value.like, value.dislike));
+// add_main_block.addEventListener("click", function (event) {
+// 	container[0].insertBefore(
+// 		CreateMainBlock({
+// 			name: "testname",
+// 			like: ["like1", "like2"],
+// 			dislike: ["dislike1", "dislike2"],
+// 		}),
+// 		add_main_block
+// 	);
+// 	update_selector();
+// 	update_dragging();
 // });
