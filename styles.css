@@ -34,12 +34,12 @@ html {
 	margin-bottom: 5px;
 }
 
-.add-sub-block {
+/* .add-sub-block {
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.445);
 	padding: 10px;
 	margin-bottom: 5px;
-}
+} */
 
 .add-main-block {
 	background-color: aqua;
@@ -63,9 +63,8 @@ html {
 }
 
 .myInput {
-	width: 100%;
 	font-size: 16px;
-	padding: 10px 20px 12px 10px;
+	padding: 10px 10px 10px 10px;
 	border: none;
 }
 

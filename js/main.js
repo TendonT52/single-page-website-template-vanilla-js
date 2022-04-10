@@ -1,38 +1,21 @@
-import {
-	addClassDraggingMainBlock,
-	addClassDraggingSubBlock,
-	updateContainer,
-	updateMidBlock,
-	update_dragging,
-} from "./dragging.js";
+import { addNewMainBlock } from "./controller.js";
 import { config_dropdown } from "./dropdown.js";
-import { CreateDropDownBlock, CreateMainBlock } from "./generate.js";
-import { initFireBase, load_AllData, data, addDataToDB } from "./model.js";
+import {  } from "./generate.js";
+import { initFireBase,loadPersons , addPerson, persons, delPerson, updatePerson } from "./model.js";
 import {
-	add_main_block,
-	container,
-	mid_block,
-	sub_block,
-	top_name,
-	update_selector,
+	initSelector
 } from "./selectors.js";
+import { createPerson } from "./util.js";
 
 initFireBase();
-update_selector();
-update_dragging();
-load_AllData().then(() => {
-	data.forEach((value, key) =>
-	container[0].insertBefore(
-		CreateMainBlock({ name: key, like: value.like, dislike: value.dislike }),
-		add_main_block)
-	);
-	update_selector();
-	update_dragging();
-	container[0].appendChild(CreateDropDownBlock())
-	config_dropdown();
-});
+initSelector();
 
-update_dropdown();
+loadPersons().then(() => {
+	persons.forEach((value, key) => {
+		addNewMainBlock(key);
+	});
+	// config_dropdown();
+});
 
 // add_main_block.addEventListener("click", function (event) {
 // 	container[0].insertBefore(

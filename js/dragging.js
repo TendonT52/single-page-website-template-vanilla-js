@@ -1,110 +1,54 @@
-import {
-	main_block,
-	add_main_block,
-	container,
-	mid_block,
-	sub_block,
-	top_name,
-} from "./selectors.js";
+import { addMode, delMode, persons, updatePerson } from "./model.js";
+import { add_main_block } from "./selectors.js";
 
-let draggingSubBlock;
-let draggingMainBlock;
-let draggingNameBlock;
+let draggingSub = null;
+let draggingMain = null;
+let draggingName = null;
+let lastmidName = null;
 
-export function update_dragging() {
-	sub_block.forEach((block) => {
-		addClassDraggingSubBlock(block);
-	});
-
-	top_name.forEach((block) => {
-		addClassDraggingMainBlock(block);
-	});
-
-	mid_block.forEach((mid_block) => {
-		updateMidBlock(mid_block);
-	});
-
-	container.forEach((main_block) => {
-		updateContainer(main_block);
-	});
+export function callBackSubBlockDragStart(key, name, element) {
+	draggingSub = { key: key, name: name, element: element };
 }
 
-export function addClassDraggingSubBlock(block) {
-	block.addEventListener("dragstart", (e) => {
-		block.classList.add("dragging-sub-block");
-		draggingSubBlock = block;
-	});
-
-	block.addEventListener("dragend", (e) => {
-		block.classList.remove("dragging-sub-block");
-		draggingSubBlock = null;
-	});
+export function callBackSubBlockDragStop(key, name, element) {
+	if (lastmidName == null) return;
+	updatePerson(lastmidName, persons.get(lastmidName));
+	updatePerson(draggingSub.key, persons.get(draggingSub.key));
+	draggingSub = null;
 }
 
-export function addClassDraggingMainBlock(block) {
-	block.addEventListener("dragstart", (e) => {
-		block.classList.add("dragging-main-block");
-		draggingMainBlock = block.parentNode;
-		draggingNameBlock = block;
-	});
-
-	block.addEventListener("dragend", (e) => {
-		block.classList.remove("dragging-main-block");
-		draggingMainBlock = null;
-		draggingNameBlock = null;
-	});
+export function callBackNameBlockDragStart(key, element) {
+	draggingName = { key: key, element: element };
 }
 
-export function updateMidBlock(mid_block) {
-	mid_block.addEventListener("dragover", (e) => {
-		if (draggingSubBlock == null) return;
-		e.preventDefault();
-		const blockAfterDraggingBlock = getBlockAfterDraggingBlock(
-			mid_block,
-			e.clientY
+export function callBackNameBlockDragStop(key) {
+	draggingName = null;
+}
+
+export function callBackMidBlockDragOver(key, mode, element, event) {
+	lastmidName = key;
+	if (draggingSub == null) return;
+	if (key == draggingSub.name) return;
+	if (persons.get(key)[mode].includes(draggingSub.name)) return;
+	delMode(
+		draggingSub.key,
+		draggingSub.name,
+		draggingSub.element.parentNode.className.split(" ")[0]
+	);
+	event.preventDefault();
+	const blockAfterDraggingBlock = getBlockAfterDraggingBlock(
+		element,
+		event.clientY
+	);
+	if (blockAfterDraggingBlock) {
+		element.insertBefore(draggingSub.element, blockAfterDraggingBlock);
+	} else {
+		element.insertBefore(
+			draggingSub.element,
+			element.querySelector(".add-sub-block")
 		);
-		if (blockAfterDraggingBlock) {
-			mid_block.insertBefore(draggingSubBlock, blockAfterDraggingBlock);
-		} else {
-			mid_block.insertBefore(
-				draggingSubBlock,
-				mid_block.querySelector(".add-sub-block")
-			);
-		}
-	});
-}
-
-export function updateContainer(container) {
-	container.addEventListener("dragover", (e) => {
-		e.preventDefault();
-		if (draggingMainBlock == null) return;
-		if (draggingSubBlock != null) return;
-		const list_main_block = [...main_block];
-		const blockAfterDraggingBlock = list_main_block.reduce(
-			(closestBlock, nextBlock) => {
-				const nextBlockRect = nextBlock.getBoundingClientRect();
-				const offsetX = nextBlockRect.left + nextBlockRect.width;
-				const offsetY = nextBlockRect.top + nextBlockRect.height;
-				if (
-					e.clientX > nextBlockRect.left &&
-					e.clientX < offsetX &&
-					e.clientY > nextBlockRect.top &&
-					e.clientY < offsetY
-				) {
-					const tmp = [offsetX, offsetY];
-					return { tmp, element: nextBlock };
-				} else {
-					return closestBlock;
-				}
-			},
-			[Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
-		).element;
-		if (blockAfterDraggingBlock) {
-			container.insertBefore(draggingMainBlock, blockAfterDraggingBlock);
-		} else {
-			container.insertBefore(draggingMainBlock, add_main_block);
-		}
-	});
+	}
+	addMode(key, draggingSub.name, mode);
 }
 
 export function getBlockAfterDraggingBlock(mid_block, yDraggingBlock) {
@@ -125,4 +69,84 @@ export function getBlockAfterDraggingBlock(mid_block, yDraggingBlock) {
 		},
 		{ offset: Number.NEGATIVE_INFINITY }
 	).element;
+}
+
+export function callBackMainBlockDragOver(element, event) {
+// 	if (draggingName == null) return;
+// 	if (draggingSub != null) return;
+// 	event.preventDefault();
+// 	const list_main_block = [
+// 		...document.querySelector(".container").querySelectorAll(".main-block"),
+// 	];
+	// const blockAfterDraggingBlock = list_main_block.reduce(
+	// 	(closestBlock, nextBlock) => {
+	// 		const nextBlockRect = nextBlock.getBoundingClientRect();
+	// 		const offsetX = nextBlockRect.left + nextBlockRect.width;
+	// 		const offsetY = nextBlockRect.top + nextBlockRect.height;
+	// 		if (
+	// 			event.clientX > nextBlockRect.left &&
+	// 			event.clientX < offsetX &&
+	// 			event.clientY > nextBlockRect.top &&
+	// 			event.clientY < offsetY
+	// 		) {
+	// 			const tmp = [offsetX, offsetY];
+	// 			return { tmp, element: nextBlock };
+	// 		} else {
+	// 			return closestBlock;
+	// 		}
+	// 	},
+	// 	[Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
+	// ).element;
+	// if (blockAfterDraggingBlock) {
+	// 	document.querySelector(".container").insertBefore(draggingName.element.parentNode, blockAfterDraggingBlock);
+	// } else {
+	// 	document.querySelector(".container").insertBefore(draggingName.element.parentNode, add_main_block);
+	// }
+	// const list_main_block = [
+	// 	...element.parentNode.querySelectorAll(".main-block"),
+	// ];
+	// const blockAfterDraggingBlock = list_main_block.reduce(
+	// 	(closestBlock, nextBlock) => {
+	// 		const nextBlockRect = nextBlock.getBoundingClientRect();
+	// 		const offsetX = nextBlockRect.left + nextBlockRect.width;
+	// 		const offsetY = nextBlockRect.top + nextBlockRect.height;
+	// 		if (
+	// 			event.clientX > nextBlockRect.left &&
+	// 			event.clientX < offsetX &&
+	// 			event.clientY > nextBlockRect.top &&
+	// 			event.clientY < offsetY
+	// 		) {
+	// 			const tmp = [offsetX, offsetY];
+	// 			return nextBlock;
+	// 		} else {
+	// 			return closestBlock;
+	// 		}
+	// 	},
+	// 	[Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
+	// ).element;
+// 	let blockAfterDraggingBlock = null;
+// 	let offsetX = 0;
+// 	let offsetY = 0;
+// 	list_main_block.forEach((e) => {
+// 		const nextBlockRect = e.getBoundingClientRect();
+// 		if (
+// 			event.clientX > offsetX &&
+// 			event.clientX < nextBlockRect.left + nextBlockRect.width / 2 &&
+// 			event.clientY > offsetY &&
+// 			event.clientY < nextBlockRect.top + nextBlockRect.height
+// 		) {
+// 			blockAfterDraggingBlock = e;
+// 		}
+// 		offsetX = nextBlockRect.left + nextBlockRect.width / 2;
+// 		offsetY = nextBlockRect.top;
+// 	});
+
+// 	if (blockAfterDraggingBlock) {
+// 		element.parentNode.insertBefore(draggingName.element.parentNode, blockAfterDraggingBlock);
+// 	} else {
+// 		element.parentNode.insertBefore(
+// 			draggingName.element.parentNode,
+// 			add_main_block
+// 		);
+// 	}
 }
