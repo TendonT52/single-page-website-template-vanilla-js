@@ -1,41 +1,4 @@
-export function CreateMainBlock() {
-	const main = document.createElement("div");
-	main.classList.add("main-block");
-
-	const name = document.createElement("div");
-	const h3 = document.createElement("h3");
-	name.draggable = true;
-	name.classList.add("top-name");
-	h3.insertAdjacentText("beforeend", "Name");
-	name.appendChild(h3);
-	main.appendChild(name);
-
-	const like = document.createElement("div");
-	like.classList.add("like");
-	like.classList.add("mid-block");
-	main.appendChild(like);
-
-	const addLike = document.createElement("div");
-	addLike.classList.add("add-sub-block");
-	addLike.draggable = true;
-	addLike.insertAdjacentText("beforeend", "+");
-	like.appendChild(addLike);
-
-	const dislike = document.createElement("div");
-	dislike.classList.add("dislike");
-	dislike.classList.add("mid-block");
-	main.appendChild(dislike);
-
-	const addUnLike = document.createElement("div");
-	addUnLike.classList.add("add-sub-block");
-	addUnLike.draggable = true;
-	addUnLike.insertAdjacentText("beforeend", "+");
-	dislike.appendChild(addUnLike);
-
-	return main;
-}
-
-export function CreateMainBlock1(block) {
+export function CreateMainBlock(block) {
 	const main = document.createElement("div");
 	main.classList.add("main-block");
 
@@ -59,9 +22,7 @@ export function CreateMainBlock1(block) {
 	});
 	main.appendChild(like);
 
-	const addLike = document.createElement("div");
-	addLike.classList.add("add-sub-block");
-	addLike.insertAdjacentText("beforeend", "+");
+	const addLike = CreateDropDownBlock();
 	like.appendChild(addLike);
 
 	const dislike = document.createElement("div");
@@ -76,10 +37,31 @@ export function CreateMainBlock1(block) {
 	});
 	main.appendChild(dislike);
 
-	const addUnLike = document.createElement("div");
-	addUnLike.classList.add("add-sub-block");
-	addUnLike.insertAdjacentText("beforeend", "+");
-	dislike.appendChild(addUnLike);
-
+	const adddisLike = CreateDropDownBlock();
+	dislike.appendChild(adddisLike);
 	return main;
+}
+
+export function CreateDropDownItem(name){
+	const item = document.createElement("div");
+	item.classList.add("dropdown-item");
+	item.insertAdjacentText("beforeend", name);
+	return item;
+}
+
+export function CreateDropDownBlock(){
+	const dropdown = document.createElement("div");
+	dropdown.classList.add("dropdown");
+
+	const input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("placeholder", "Add...");
+	input.classList.add("myInput");
+	dropdown.appendChild(input);
+
+	const dropdown_content = document.createElement("div");
+	dropdown_content.classList.add("dropdown-content");
+	dropdown.appendChild(dropdown_content);
+
+	return dropdown;
 }
