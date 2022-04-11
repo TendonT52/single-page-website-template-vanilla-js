@@ -9,7 +9,9 @@ let lastmidName = null;
 
 export function callBackSubBlockDragStart(name, element) {
 	draggingSub = {
-		key: element.parentNode.parentNode.querySelector(".top-name").textContent,
+		key: element.parentNode.parentNode
+			.querySelector(".top-name")
+			.querySelector("h3").textContent,
 		name: name,
 		element: element,
 	};
@@ -45,7 +47,6 @@ export function callBackMidBlockDragOver(key, mode, element, event) {
 		}
 	});
 	if (isRe) return;
-
 	let isOp = false;
 	element.parentNode
 		.querySelector("." + oppositeMode(mode))
