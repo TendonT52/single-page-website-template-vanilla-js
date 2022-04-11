@@ -1,3 +1,4 @@
+import { callBackDelMainBlock, callBackDelSubBlock } from "./controller.js";
 import {
 	callBackMidBlockDragOver,
 	callBackNameBlockDragStart,
@@ -6,7 +7,12 @@ import {
 	callBackSubBlockDragStop,
 	callBackMainBlockDragOver,
 } from "./dragging.js";
-import { callBackBlurDropDown, callBackClickDropDownItem, callBackFocusDropDown, callBackKeyupDropDown } from "./dropdown.js";
+import {
+	callBackBlurDropDown,
+	callBackClickDropDownItem,
+	callBackFocusDropDown,
+	callBackKeyupDropDown,
+} from "./dropdown.js";
 import { persons } from "./model.js";
 
 export function createBlock(key) {
@@ -16,22 +22,27 @@ export function createBlock(key) {
 	mainBlock.appendChild(nameBlock);
 
 	const likeBlock = createMidBlock(key, "like");
-	persons.get(key).like.forEach((p) => {
-		likeBlock.appendChild(createSubBlock(key, p));
-	});
 	const addLikeBlock = createDropDownBlock(key, "like");
 	likeBlock.appendChild(addLikeBlock);
+	persons.get(key).like.forEach((name) => {
+		appendSubBlock(key, likeBlock, "like", name)
+	});
 	mainBlock.appendChild(likeBlock);
 
 	const dislikeBlock = createMidBlock(key, "dislike");
-	persons.get(key).dislike.forEach((p) => {
-		dislikeBlock.appendChild(createSubBlock(key, p));
+	const addDisLikeBlock = createDropDownBlock(key, "dislike");
+	dislikeBlock.appendChild(addDisLikeBlock);
+	persons.get(key).dislike.forEach((name) => {
+		appendSubBlock(key, dislikeBlock, "dislike", name)
 	});
-	const adddisLikeBlock = createDropDownBlock(key, "dislike");
-	dislikeBlock.appendChild(adddisLikeBlock);
 	mainBlock.appendChild(dislikeBlock);
 
 	return mainBlock;
+}
+
+export function appendSubBlock(key, parent, mode, name) {
+	const addBlock = parent.querySelector(".add-sub-block");
+	parent.insertBefore(createSubBlock(key, name), addBlock);
 }
 
 export function createMainBlock() {
@@ -50,6 +61,7 @@ function createNameBlock(key) {
 	name.classList.add("top-name");
 	h3.insertAdjacentText("beforeend", key);
 	name.appendChild(h3);
+	name.appendChild(createDeleteMainBtn());
 
 	name.addEventListener("dragstart", (e) => {
 		name.classList.add("dragging-main-block");
@@ -74,22 +86,24 @@ function createMidBlock(key, mode) {
 	return item;
 }
 
-function createSubBlock(key, name) {
+export function createSubBlock(key, name) {
 	const item = document.createElement("div");
+	const text = document.createElement("p");
 	item.classList.add("sub-block");
 	item.draggable = true;
-	item.insertAdjacentText("beforeend", name);
-
+	text.insertAdjacentText("beforeend", name);
+	item.appendChild(text);
 	item.addEventListener("dragstart", (e) => {
 		item.classList.add("dragging-sub-block");
-		callBackSubBlockDragStart(key, name, item);
+		callBackSubBlockDragStart(name, item);
 	});
 
 	item.addEventListener("dragend", (e) => {
 		item.classList.remove("dragging-sub-block");
-		callBackSubBlockDragStop(key, name, item);
+		callBackSubBlockDragStop(name, item);
 	});
 
+	item.appendChild(createDeleteSubBtn());
 	return item;
 }
 
@@ -131,4 +145,24 @@ export function createDropDownBlock(key, mode) {
 	});
 
 	return dropdown;
+}
+
+function createDeleteSubBtn(){
+	const btn = document.createElement("button");
+	btn.classList.add("del-sub-btn");
+	btn.insertAdjacentText("beforeend", "-");
+	btn.addEventListener("click", (e) => {
+		callBackDelSubBlock(btn);
+	});
+	return btn;
+}
+
+function createDeleteMainBtn(){
+	const btn = document.createElement("button");
+	btn.classList.add("del-main-btn");
+	btn.insertAdjacentText("beforeend", "-");
+	btn.addEventListener("click", (e) => {
+		callBackDelMainBlock(btn);
+	});
+	return btn;
 }
