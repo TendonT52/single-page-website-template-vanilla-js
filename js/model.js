@@ -76,11 +76,13 @@ export function addMode(key, name, mode) {
 	if (!persons.has(key)) return false;
 	if (persons.get(key)[mode].includes(name)) return false;
 	persons.get(key)[mode].push(name);
+	console.log("add", key, name ,mode);
 	return true;
 }
 
 export function delMode(key, name, mode) {
 	if (!persons.has(key)) return false;
 	persons.get(key)[mode] = persons.get(key)[mode].filter(e => e != name)
+	console.log("del", key, name ,mode);
 	return true;
 }

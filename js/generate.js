@@ -92,12 +92,12 @@ export function createSubBlock(key, name) {
 
 	item.addEventListener("dragstart", (e) => {
 		item.classList.add("dragging-sub-block");
-		callBackSubBlockDragStart(key, name, item);
+		callBackSubBlockDragStart(name, item);
 	});
 
 	item.addEventListener("dragend", (e) => {
 		item.classList.remove("dragging-sub-block");
-		callBackSubBlockDragStop(key, name, item);
+		callBackSubBlockDragStop(name, item);
 	});
 
 	return item;

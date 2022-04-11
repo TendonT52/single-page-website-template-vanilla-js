@@ -157,3 +157,9 @@ html {
 .tableShow{
 	display: none;
 }
+
+.input-name{
+	font-size: 16px;
+	padding: 10px 10px 10px 10px;
+	border: none;
+}

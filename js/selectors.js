@@ -1,3 +1,5 @@
+import { callBackAddMainBlock } from "./controller.js";
+
 export let input_container;
 export let result_container;
 export let add_main_block;
@@ -21,5 +23,12 @@ function initBtnResult(){
 	btn_Result.addEventListener('click', () => {
 		tableShow.style.display = 'block' ;
 		generateSolution() ;
+	});
+	initAddMainBlock();
+}
+
+function initAddMainBlock() {
+	add_main_block.querySelector('.btn-add-main-block').addEventListener("click", function (event) {
+		callBackAddMainBlock();
 	});
 }
