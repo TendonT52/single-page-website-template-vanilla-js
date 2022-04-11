@@ -1,5 +1,6 @@
-import { createDropDownItem } from "./generate.js";
+import { appendSubBlock, createDropDownItem, createSubBlock } from "./generate.js";
 import { addMode, persons, updatePerson } from "./model.js";
+import { oppositeMode } from "./util.js";
 
 export function callBackFocusDropDown(key, mode, dropdown_content) {
 	update_dropdown_content(key, mode, dropdown_content, "");
@@ -20,6 +21,7 @@ export function callBackClickDropDownItem(key, mode, name, element) {
 	addMode(key, name, mode);
 	updatePerson(key, persons.get(key));
 	element.parentNode.classList.remove("show");
+	appendSubBlock(key, persons.get(key).element.querySelector("."+mode), mode, name)
 }
 
 export function update_dropdown_content(key, mode, dropdown_content, filter) {
@@ -30,6 +32,7 @@ export function update_dropdown_content(key, mode, dropdown_content, filter) {
 	persons.forEach((v, k) => allPerson.push(k));
 	
 	allPerson = allPerson.filter((person) => {
+		if(persons.get(key)[oppositeMode(mode)].includes(person)) return false;
 		if (person == key) return false;
 		if (alreadyHave.includes(person)) return false;
 		const size = Math.min(person.length, filter.length);

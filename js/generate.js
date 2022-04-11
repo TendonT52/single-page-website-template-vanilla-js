@@ -6,7 +6,12 @@ import {
 	callBackSubBlockDragStop,
 	callBackMainBlockDragOver,
 } from "./dragging.js";
-import { callBackBlurDropDown, callBackClickDropDownItem, callBackFocusDropDown, callBackKeyupDropDown } from "./dropdown.js";
+import {
+	callBackBlurDropDown,
+	callBackClickDropDownItem,
+	callBackFocusDropDown,
+	callBackKeyupDropDown,
+} from "./dropdown.js";
 import { persons } from "./model.js";
 
 export function createBlock(key) {
@@ -16,22 +21,27 @@ export function createBlock(key) {
 	mainBlock.appendChild(nameBlock);
 
 	const likeBlock = createMidBlock(key, "like");
-	persons.get(key).like.forEach((p) => {
-		likeBlock.appendChild(createSubBlock(key, p));
-	});
 	const addLikeBlock = createDropDownBlock(key, "like");
 	likeBlock.appendChild(addLikeBlock);
+	persons.get(key).like.forEach((name) => {
+		appendSubBlock(key, likeBlock, "like", name)
+	});
 	mainBlock.appendChild(likeBlock);
 
 	const dislikeBlock = createMidBlock(key, "dislike");
-	persons.get(key).dislike.forEach((p) => {
-		dislikeBlock.appendChild(createSubBlock(key, p));
+	const addDisLikeBlock = createDropDownBlock(key, "dislike");
+	dislikeBlock.appendChild(addDisLikeBlock);
+	persons.get(key).dislike.forEach((name) => {
+		appendSubBlock(key, dislikeBlock, "dislike", name)
 	});
-	const adddisLikeBlock = createDropDownBlock(key, "dislike");
-	dislikeBlock.appendChild(adddisLikeBlock);
 	mainBlock.appendChild(dislikeBlock);
 
 	return mainBlock;
+}
+
+export function appendSubBlock(key, parent, mode, name) {
+	const addBlock = parent.querySelector(".add-sub-block");
+	parent.insertBefore(createSubBlock(key, name), addBlock);
 }
 
 export function createMainBlock() {
@@ -74,7 +84,7 @@ function createMidBlock(key, mode) {
 	return item;
 }
 
-function createSubBlock(key, name) {
+export function createSubBlock(key, name) {
 	const item = document.createElement("div");
 	item.classList.add("sub-block");
 	item.draggable = true;

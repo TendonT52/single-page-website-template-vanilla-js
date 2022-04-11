@@ -1,5 +1,6 @@
 import { addMode, delMode, persons, updatePerson } from "./model.js";
 import { add_main_block } from "./selectors.js";
+import { oppositeMode } from "./util.js";
 
 let draggingSub = null;
 let draggingMain = null;
@@ -29,7 +30,29 @@ export function callBackMidBlockDragOver(key, mode, element, event) {
 	lastmidName = key;
 	if (draggingSub == null) return;
 	if (key == draggingSub.name) return;
-	if (persons.get(key)[mode].includes(draggingSub.name)) return;
+	let isRe = false;
+	element.querySelectorAll(".sub-block").forEach((subblock) => {
+		if (subblock.isSameNode(draggingSub.element)) return;
+		if (draggingSub.name == subblock.textContent) {
+			isRe = true;
+			return;
+		}
+	});
+	if (isRe) return;
+
+	let isOp = false;
+	element.parentNode
+		.querySelector("." + oppositeMode(mode))
+		.querySelectorAll(".sub-block")
+		.forEach((subblock) => {
+			if (subblock.isSameNode(draggingSub.element)) return;
+			if (draggingSub.name == subblock.textContent) {
+				isOp = true;
+				return;
+			}
+		});
+		if (isOp) return true;
+
 	delMode(
 		draggingSub.key,
 		draggingSub.name,
@@ -72,12 +95,12 @@ export function getBlockAfterDraggingBlock(mid_block, yDraggingBlock) {
 }
 
 export function callBackMainBlockDragOver(element, event) {
-// 	if (draggingName == null) return;
-// 	if (draggingSub != null) return;
-// 	event.preventDefault();
-// 	const list_main_block = [
-// 		...document.querySelector(".container").querySelectorAll(".main-block"),
-// 	];
+	// 	if (draggingName == null) return;
+	// 	if (draggingSub != null) return;
+	// 	event.preventDefault();
+	// 	const list_main_block = [
+	// 		...document.querySelector(".container").querySelectorAll(".main-block"),
+	// 	];
 	// const blockAfterDraggingBlock = list_main_block.reduce(
 	// 	(closestBlock, nextBlock) => {
 	// 		const nextBlockRect = nextBlock.getBoundingClientRect();
@@ -124,29 +147,28 @@ export function callBackMainBlockDragOver(element, event) {
 	// 	},
 	// 	[Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
 	// ).element;
-// 	let blockAfterDraggingBlock = null;
-// 	let offsetX = 0;
-// 	let offsetY = 0;
-// 	list_main_block.forEach((e) => {
-// 		const nextBlockRect = e.getBoundingClientRect();
-// 		if (
-// 			event.clientX > offsetX &&
-// 			event.clientX < nextBlockRect.left + nextBlockRect.width / 2 &&
-// 			event.clientY > offsetY &&
-// 			event.clientY < nextBlockRect.top + nextBlockRect.height
-// 		) {
-// 			blockAfterDraggingBlock = e;
-// 		}
-// 		offsetX = nextBlockRect.left + nextBlockRect.width / 2;
-// 		offsetY = nextBlockRect.top;
-// 	});
-
-// 	if (blockAfterDraggingBlock) {
-// 		element.parentNode.insertBefore(draggingName.element.parentNode, blockAfterDraggingBlock);
-// 	} else {
-// 		element.parentNode.insertBefore(
-// 			draggingName.element.parentNode,
-// 			add_main_block
-// 		);
-// 	}
+	// 	let blockAfterDraggingBlock = null;
+	// 	let offsetX = 0;
+	// 	let offsetY = 0;
+	// 	list_main_block.forEach((e) => {
+	// 		const nextBlockRect = e.getBoundingClientRect();
+	// 		if (
+	// 			event.clientX > offsetX &&
+	// 			event.clientX < nextBlockRect.left + nextBlockRect.width / 2 &&
+	// 			event.clientY > offsetY &&
+	// 			event.clientY < nextBlockRect.top + nextBlockRect.height
+	// 		) {
+	// 			blockAfterDraggingBlock = e;
+	// 		}
+	// 		offsetX = nextBlockRect.left + nextBlockRect.width / 2;
+	// 		offsetY = nextBlockRect.top;
+	// 	});
+	// 	if (blockAfterDraggingBlock) {
+	// 		element.parentNode.insertBefore(draggingName.element.parentNode, blockAfterDraggingBlock);
+	// 	} else {
+	// 		element.parentNode.insertBefore(
+	// 			draggingName.element.parentNode,
+	// 			add_main_block
+	// 		);
+	// 	}
 }
