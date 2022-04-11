@@ -1,3 +1,4 @@
+import { callBackDelSubBlock } from "./controller.js";
 import {
 	callBackMidBlockDragOver,
 	callBackNameBlockDragStart,
@@ -86,10 +87,11 @@ function createMidBlock(key, mode) {
 
 export function createSubBlock(key, name) {
 	const item = document.createElement("div");
+	const text = document.createElement("p");
 	item.classList.add("sub-block");
 	item.draggable = true;
-	item.insertAdjacentText("beforeend", name);
-
+	text.insertAdjacentText("beforeend", name);
+	item.appendChild(text);
 	item.addEventListener("dragstart", (e) => {
 		item.classList.add("dragging-sub-block");
 		callBackSubBlockDragStart(name, item);
@@ -100,6 +102,7 @@ export function createSubBlock(key, name) {
 		callBackSubBlockDragStop(name, item);
 	});
 
+	item.appendChild(createDeleteBtn());
 	return item;
 }
 
@@ -141,4 +144,14 @@ export function createDropDownBlock(key, mode) {
 	});
 
 	return dropdown;
+}
+
+function createDeleteBtn(){
+	const btn = document.createElement("button");
+	btn.classList.add("del-btn");
+	btn.insertAdjacentText("beforeend", "-");
+	btn.addEventListener("click", (e) => {
+		callBackDelSubBlock(btn);
+	});
+	return btn;
 }
