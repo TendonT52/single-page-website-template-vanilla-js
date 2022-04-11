@@ -7,12 +7,18 @@ let draggingMain = null;
 let draggingName = null;
 let lastmidName = null;
 
-export function callBackSubBlockDragStart(key, name, element) {
-	draggingSub = { key: key, name: name, element: element };
+export function callBackSubBlockDragStart(name, element) {
+	draggingSub = {
+		key: element.parentNode.parentNode.querySelector(".top-name").textContent,
+		name: name,
+		element: element,
+	};
 }
 
 export function callBackSubBlockDragStop(key, name, element) {
 	if (lastmidName == null) return;
+	console.log(persons.get(lastmidName));
+	console.log(persons.get(draggingSub.key));
 	updatePerson(lastmidName, persons.get(lastmidName));
 	updatePerson(draggingSub.key, persons.get(draggingSub.key));
 	draggingSub = null;
@@ -51,7 +57,7 @@ export function callBackMidBlockDragOver(key, mode, element, event) {
 				return;
 			}
 		});
-		if (isOp) return true;
+	if (isOp) return true;
 
 	delMode(
 		draggingSub.key,
