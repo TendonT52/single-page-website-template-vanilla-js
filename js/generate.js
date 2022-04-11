@@ -6,6 +6,7 @@ import {
 	callBackSubBlockDragStop,
 	callBackMainBlockDragOver,
 } from "./dragging.js";
+import { callBackBlurDropDown, callBackClickDropDownItem, callBackFocusDropDown, callBackKeyupDropDown } from "./dropdown.js";
 import { persons } from "./model.js";
 
 export function createBlock(key) {
@@ -18,7 +19,7 @@ export function createBlock(key) {
 	persons.get(key).like.forEach((p) => {
 		likeBlock.appendChild(createSubBlock(key, p));
 	});
-	const addLikeBlock = createDropDownBlock();
+	const addLikeBlock = createDropDownBlock(key, "like");
 	likeBlock.appendChild(addLikeBlock);
 	mainBlock.appendChild(likeBlock);
 
@@ -26,7 +27,7 @@ export function createBlock(key) {
 	persons.get(key).dislike.forEach((p) => {
 		dislikeBlock.appendChild(createSubBlock(key, p));
 	});
-	const adddisLikeBlock = createDropDownBlock();
+	const adddisLikeBlock = createDropDownBlock(key, "dislike");
 	dislikeBlock.appendChild(adddisLikeBlock);
 	mainBlock.appendChild(dislikeBlock);
 
@@ -38,7 +39,7 @@ export function createMainBlock() {
 	main.classList.add("main-block");
 	main.addEventListener("dragover", (e) => {
 		callBackMainBlockDragOver(main, e);
-	})
+	});
 	return main;
 }
 
@@ -92,27 +93,42 @@ function createSubBlock(key, name) {
 	return item;
 }
 
-export function createDropDownItem(name) {
+export function createDropDownItem(key, mode, name) {
 	const item = document.createElement("div");
 	item.classList.add("dropdown-item");
 	item.insertAdjacentText("beforeend", name);
+
+	item.addEventListener("click", (e) => {
+		callBackClickDropDownItem(key, mode, name, item);
+	});
+
 	return item;
 }
 
-export function createDropDownBlock() {
+export function createDropDownBlock(key, mode) {
 	const dropdown = document.createElement("div");
 	dropdown.classList.add("dropdown");
 	dropdown.classList.add("add-sub-block");
 
-	const input = document.createElement("input");
-	input.setAttribute("type", "text");
-	input.setAttribute("placeholder", "Add...");
-	input.classList.add("myInput");
-	dropdown.appendChild(input);
+	const input_text = document.createElement("input");
+	input_text.setAttribute("type", "text");
+	input_text.setAttribute("placeholder", "Add...");
+	input_text.classList.add("myInput");
 
 	const dropdown_content = document.createElement("div");
 	dropdown_content.classList.add("dropdown-content");
+	dropdown.appendChild(input_text);
 	dropdown.appendChild(dropdown_content);
+
+	input_text.addEventListener("focus", (e) => {
+		callBackFocusDropDown(key, mode, dropdown_content);
+	});
+	input_text.addEventListener("blur", (e) => {
+		callBackBlurDropDown(key, mode, dropdown_content);
+	});
+	input_text.addEventListener("keyup", (e) => {
+		callBackKeyupDropDown(key, mode, dropdown_content, input_text.value);
+	});
 
 	return dropdown;
 }

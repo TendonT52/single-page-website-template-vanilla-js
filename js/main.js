@@ -1,11 +1,8 @@
 import { addNewMainBlock } from "./controller.js";
-import { config_dropdown } from "./dropdown.js";
-import {  } from "./generate.js";
 import { initFireBase,loadPersons , addPerson, persons, delPerson, updatePerson } from "./model.js";
 import {
 	initSelector
 } from "./selectors.js";
-import { createPerson } from "./util.js";
 
 initFireBase();
 initSelector();
@@ -16,6 +13,7 @@ loadPersons().then(() => {
 	});
 	// config_dropdown();
 });
+
 
 // add_main_block.addEventListener("click", function (event) {
 // 	container[0].insertBefore(
