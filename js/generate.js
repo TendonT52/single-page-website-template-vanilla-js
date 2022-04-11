@@ -1,3 +1,4 @@
+import { callBackDelMainBlock, callBackDelSubBlock } from "./controller.js";
 import {
 	callBackMidBlockDragOver,
 	callBackNameBlockDragStart,
@@ -60,6 +61,7 @@ function createNameBlock(key) {
 	name.classList.add("top-name");
 	h3.insertAdjacentText("beforeend", key);
 	name.appendChild(h3);
+	name.appendChild(createDeleteMainBtn());
 
 	name.addEventListener("dragstart", (e) => {
 		name.classList.add("dragging-main-block");
@@ -86,10 +88,11 @@ function createMidBlock(key, mode) {
 
 export function createSubBlock(key, name) {
 	const item = document.createElement("div");
+	const text = document.createElement("p");
 	item.classList.add("sub-block");
 	item.draggable = true;
-	item.insertAdjacentText("beforeend", name);
-
+	text.insertAdjacentText("beforeend", name);
+	item.appendChild(text);
 	item.addEventListener("dragstart", (e) => {
 		item.classList.add("dragging-sub-block");
 		callBackSubBlockDragStart(name, item);
@@ -100,6 +103,7 @@ export function createSubBlock(key, name) {
 		callBackSubBlockDragStop(name, item);
 	});
 
+	item.appendChild(createDeleteSubBtn());
 	return item;
 }
 
@@ -141,4 +145,24 @@ export function createDropDownBlock(key, mode) {
 	});
 
 	return dropdown;
+}
+
+function createDeleteSubBtn(){
+	const btn = document.createElement("button");
+	btn.classList.add("del-sub-btn");
+	btn.insertAdjacentText("beforeend", "-");
+	btn.addEventListener("click", (e) => {
+		callBackDelSubBlock(btn);
+	});
+	return btn;
+}
+
+function createDeleteMainBtn(){
+	const btn = document.createElement("button");
+	btn.classList.add("del-main-btn");
+	btn.insertAdjacentText("beforeend", "-");
+	btn.addEventListener("click", (e) => {
+		callBackDelMainBlock(btn);
+	});
+	return btn;
 }

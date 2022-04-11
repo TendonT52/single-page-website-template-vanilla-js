@@ -124,6 +124,7 @@ html {
 	font-size: 16px;
 	padding: 10px 10px 10px 10px;
 	border: none;
+	display: block;
 }
 
 .myInput:focus {
@@ -162,4 +163,19 @@ html {
 	font-size: 16px;
 	padding: 10px 10px 10px 10px;
 	border: none;
+}
+.del-sub-btn{
+	float: right;
+}
+
+.del-main-btn{
+	float: right;
+}
+
+p{
+	display: inline;
+}
+
+h3{
+	display: inline;
 }
