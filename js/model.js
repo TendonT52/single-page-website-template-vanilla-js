@@ -68,7 +68,6 @@ export function delPerson(key) {
 
 export function updatePerson(key, value) {
 	if (!persons.has(key)) return false;
-	console.log(key, value)
 	addDB(key, value)
 	return true;
 }
@@ -82,9 +81,6 @@ export function addMode(key, name, mode) {
 
 export function delMode(key, name, mode) {
 	if (!persons.has(key)) return false;
-	console.log("del",key, name,mode)
-	console.log(persons.get(key)[mode]);
 	persons.get(key)[mode] = persons.get(key)[mode].filter(e => e != name)
-	console.log(persons.get(key)[mode]);
 	return true;
 }

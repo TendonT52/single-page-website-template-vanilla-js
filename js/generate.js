@@ -6,6 +6,12 @@ import {
 	callBackSubBlockDragStop,
 	callBackMainBlockDragOver,
 } from "./dragging.js";
+import {
+	callBackBlurDropDown,
+	callBackClickDropDownItem,
+	callBackFocusDropDown,
+	callBackKeyupDropDown,
+} from "./dropdown.js";
 import { persons } from "./model.js";
 
 export function createBlock(key) {
@@ -15,22 +21,27 @@ export function createBlock(key) {
 	mainBlock.appendChild(nameBlock);
 
 	const likeBlock = createMidBlock(key, "like");
-	persons.get(key).like.forEach((p) => {
-		likeBlock.appendChild(createSubBlock(key, p));
-	});
-	const addLikeBlock = createDropDownBlock();
+	const addLikeBlock = createDropDownBlock(key, "like");
 	likeBlock.appendChild(addLikeBlock);
+	persons.get(key).like.forEach((name) => {
+		appendSubBlock(key, likeBlock, "like", name)
+	});
 	mainBlock.appendChild(likeBlock);
 
 	const dislikeBlock = createMidBlock(key, "dislike");
-	persons.get(key).dislike.forEach((p) => {
-		dislikeBlock.appendChild(createSubBlock(key, p));
+	const addDisLikeBlock = createDropDownBlock(key, "dislike");
+	dislikeBlock.appendChild(addDisLikeBlock);
+	persons.get(key).dislike.forEach((name) => {
+		appendSubBlock(key, dislikeBlock, "dislike", name)
 	});
-	const adddisLikeBlock = createDropDownBlock();
-	dislikeBlock.appendChild(adddisLikeBlock);
 	mainBlock.appendChild(dislikeBlock);
 
 	return mainBlock;
+}
+
+export function appendSubBlock(key, parent, mode, name) {
+	const addBlock = parent.querySelector(".add-sub-block");
+	parent.insertBefore(createSubBlock(key, name), addBlock);
 }
 
 export function createMainBlock() {
@@ -38,7 +49,7 @@ export function createMainBlock() {
 	main.classList.add("main-block");
 	main.addEventListener("dragover", (e) => {
 		callBackMainBlockDragOver(main, e);
-	})
+	});
 	return main;
 }
 
@@ -73,7 +84,7 @@ function createMidBlock(key, mode) {
 	return item;
 }
 
-function createSubBlock(key, name) {
+export function createSubBlock(key, name) {
 	const item = document.createElement("div");
 	item.classList.add("sub-block");
 	item.draggable = true;
@@ -92,27 +103,42 @@ function createSubBlock(key, name) {
 	return item;
 }
 
-export function createDropDownItem(name) {
+export function createDropDownItem(key, mode, name) {
 	const item = document.createElement("div");
 	item.classList.add("dropdown-item");
 	item.insertAdjacentText("beforeend", name);
+
+	item.addEventListener("click", (e) => {
+		callBackClickDropDownItem(key, mode, name, item);
+	});
+
 	return item;
 }
 
-export function createDropDownBlock() {
+export function createDropDownBlock(key, mode) {
 	const dropdown = document.createElement("div");
 	dropdown.classList.add("dropdown");
 	dropdown.classList.add("add-sub-block");
 
-	const input = document.createElement("input");
-	input.setAttribute("type", "text");
-	input.setAttribute("placeholder", "Add...");
-	input.classList.add("myInput");
-	dropdown.appendChild(input);
+	const input_text = document.createElement("input");
+	input_text.setAttribute("type", "text");
+	input_text.setAttribute("placeholder", "Add...");
+	input_text.classList.add("myInput");
 
 	const dropdown_content = document.createElement("div");
 	dropdown_content.classList.add("dropdown-content");
+	dropdown.appendChild(input_text);
 	dropdown.appendChild(dropdown_content);
+
+	input_text.addEventListener("focus", (e) => {
+		callBackFocusDropDown(key, mode, dropdown_content);
+	});
+	input_text.addEventListener("blur", (e) => {
+		callBackBlurDropDown(key, mode, dropdown_content);
+	});
+	input_text.addEventListener("keyup", (e) => {
+		callBackKeyupDropDown(key, mode, dropdown_content, input_text.value);
+	});
 
 	return dropdown;
 }
