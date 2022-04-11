@@ -78,6 +78,7 @@ html {
 	border-radius: 10px 10px 10px 10px;
 }
 
+/* 
 .add-sub-block {
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.445);
@@ -101,8 +102,8 @@ html {
 	border-radius: 15px 45px 15px 45px;
 	/* (shadow)
 	box-shadow: 5px 5px 30px rgba(6, 6, 6, 0.5);
-	*/
 }
+*/
 
 .add-sub-block select {
 	display: none;
@@ -113,9 +114,8 @@ html {
 }
 
 .myInput {
-	width: 100%;
 	font-size: 16px;
-	padding: 10px 20px 12px 10px;
+	padding: 10px 10px 10px 10px;
 	border: none;
 }
 

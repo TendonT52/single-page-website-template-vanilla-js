@@ -7,6 +7,7 @@ import {
 	collection,
 	query,
 	setDoc,
+	deleteDoc,
 } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -18,7 +19,7 @@ const firebaseConfig = {
 	appId: "1:688361058297:web:98fa7184768936e5dbd728",
 };
 
-export let data = new Map();
+export let persons = new Map();
 export let app;
 export let db;
 export let graphRef;
@@ -29,16 +30,61 @@ export async function initFireBase() {
 	graphRef = collection(db, "graph");
 }
 
-export async function load_AllData() {
+export async function loadPersons() {
 	const querySnapshot = await getDocs(collection(db, "graph"));
 	querySnapshot.forEach((doc) => {
-		data.set(doc.id, { like: doc.data().like, dislike: doc.data().dislike });
+		persons.set(doc.id, {
+			like: doc.data().like,
+			dislike: doc.data().dislike,
+			element: null,
+		});
 	});
 }
 
-export async function addDataToDB(block) {
-	await setDoc(doc(graphRef, block.name), {
-		like: block.like,
-		dislike: block.dislike,
+async function addDB(key, value) {
+	await setDoc(doc(graphRef, key), {
+		like: value.like,
+		dislike: value.dislike,
 	});
+}
+
+async function delDB(key) {
+	await deleteDoc(doc(graphRef, key));
+}
+
+export function addPerson(key, value) {
+	if (persons.has(key)) return false;
+	persons.set(key, value);
+	addDB(key, value);
+	return true;
+}
+
+export function delPerson(key) {
+	if (!persons.has(key)) return false;
+	persons.delete(key);
+	delDB(key)
+	return true;
+}
+
+export function updatePerson(key, value) {
+	if (!persons.has(key)) return false;
+	console.log(key, value)
+	addDB(key, value)
+	return true;
+}
+
+export function addMode(key, name, mode) {
+	if (!persons.has(key)) return false;
+	if (persons.get(key)[mode].includes(name)) return false;
+	persons.get(key)[mode].push(name);
+	return true;
+}
+
+export function delMode(key, name, mode) {
+	if (!persons.has(key)) return false;
+	console.log("del",key, name,mode)
+	console.log(persons.get(key)[mode]);
+	persons.get(key)[mode] = persons.get(key)[mode].filter(e => e != name)
+	console.log(persons.get(key)[mode]);
+	return true;
 }
