@@ -72,8 +72,40 @@ export function generateSolution(InputGroup) {
         var answer = [] ;
         maximumSpaningTree(answer) ;
 
-        var numberInEachGroup1 = math.floor(NumberOfPeople/NumberOfGroup) ;
-        var numberInEachGroup2 = numberInEachGroup1 + 1 ;
+        var Group1 = NumberOfPeople % NumberOfGroup ;
+        var personPerGroup1 = Math.ceil(NumberOfPeople/ (NumberOfGroup + 0.0)) ;
+        var personPerGroup2 = Math.floor(NumberOfPeople/ (NumberOfGroup + 0.0)) ;
+        var Group2 = (NumberOfPeople - (Group1*personPerGroup1))/personPerGroup2 ;
+
+        var cutting = [] ;
+        var idx = 0 ;
+        for (var i = 0; i < Group1; i++) {
+            cutting[idx] = personPerGroup1 ;
+            idx += 1 ;
+        }
+        for (var i = 0; i < Group2; i++) {
+            cutting[idx] = personPerGroup2 ;
+            idx += 1 ;
+        }
+
+        var start = 0 ;
+        var IDXarr = 0 ;
+        var IDXofAnswer = [] ;
+        for (var i = 0; i < cutting.length; i++) {
+            var tmp = [] ;
+            tmp = answer.slice(start, start + cutting[i]) ;
+            start += cutting[i] ;
+            IDXofAnswer[IDXarr] = tmp ;
+            var tmp2 = [] ;
+            for (var j = 0; j < tmp.length; j++) {
+                tmp2[j] = ArrayPeople[tmp[j]] ;
+            }
+            AnswerGroup[IDXarr] = tmp2 ;
+            IDXarr += 1 ;
+        }
+
+        console.log(IDXofAnswer) ;
+        console.log(AnswerGroup) ;
     }
 }
 
@@ -173,10 +205,3 @@ function myRandom(color) {
     var newArrayIDX = Math.floor(Math.random() * newArray.length);
     return newArray[newArrayIDX] ;
 }
-
-
-
-
-
-
-
