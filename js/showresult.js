@@ -48,7 +48,6 @@ export function generateSolution(InputGroup) {
             countNumber1 = NumberOfPeople/number1 ;
             NumberOfEachGroup.set(number1, countNumber1) ;
         }
-        findGrouping() ;
     }
 }
 
@@ -70,46 +69,6 @@ function findIndex(name) {
         }
     }
     return -1 ;
-}
-
-function findmax(nameID) {
-    var score = -1 ;
-    var personIDMax ;
-    var tmpArr = RankingTable[nameID] ;
-    for (var i = 0; i < tmpArr.length; i++) {
-        if (tmpArr[i] > score && !IsExit.has(i)) {
-            score = tmpArr[i] ;
-            personIDMax = i ;
-        }
-    }
-    return personIDMax ;
-}
-
-function myRandom() {
-    var newArray = [] ;
-    var num = 0 ;
-    for (let index = 0; index < ArrayPeople.length; index++) {
-        if (!IsExit.has(index)) {
-            newArray[num] = index ;
-            num += 1 ;
-        }
-    }
-    var newArrayIDX = Math.floor(Math.random() * newArray.length);
-    return newArray[newArrayIDX] ;
-}
-
-function findGrouping() {
-    for (var i = 0; i < numberOfGroup; i++) {       //for the first time
-        var PeopleID = myRandom() ;
-        IsExit.add(PeopleID) ;
-        var tmpArr = [] ;
-        tmpArr[0] = ArrayPeople[PeopleID] ;
-        AnswerGroup[i] =  tmpArr ;
-    }
-
-    for (var i = 0; i < numberOfGroup; i++) {
-        console.log(AnswerGroup[i]) ;
-    }
 }
 
 
