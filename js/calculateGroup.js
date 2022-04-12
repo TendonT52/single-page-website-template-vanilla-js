@@ -10,6 +10,7 @@ var RankingTable = [] ;
 var dataCollected = [] ;
 
 export function generateSolution(InputGroup) {
+    document.getElementById('contain3').innerHTML = "";
     NumberOfGroup = InputGroup ;
     console.log(" --> " + NumberOfGroup) ;
     AnswerGroup = [] ;
@@ -67,8 +68,10 @@ export function generateSolution(InputGroup) {
     */
 
     if (NumberOfGroup > NumberOfPeople) {
+        addElement() ;
         alert("Error!  Maximum number of students is now : " + NumberOfPeople) ;
     } else if (NumberOfGroup <= 0) {
+        addElement() ;
         alert("Error! The Number of group must more than or equal to 1") ;
     } else {
         var answer = [] ;

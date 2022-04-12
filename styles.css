@@ -172,7 +172,7 @@ h3{
 }
 
 /*
-for display result
+for display result (in html)
 */
 
 .container2 {
@@ -196,6 +196,30 @@ for display result
 }
 
 .container3 {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+ /*
+ show result in showResult.js
+ */
+
+ .main-result-block {
+	background-color: rgb(70, 125, 245);
+	margin: 10px;
+	padding: 10px;
+	width: 250px;
+	border-radius: 15px 15px 15px 15px;
+}
+
+.sub-result-block {
+	background-color: rgb(160, 200, 246);
+	padding: 10px;
+	margin: 10px ;
+	border-radius: 15px 15px 15px 15px;
+}
+
+#contain3 {
 	display: flex;
 	flex-wrap: wrap;
 }
