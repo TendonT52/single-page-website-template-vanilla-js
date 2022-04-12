@@ -150,7 +150,7 @@ export function createDropDownBlock(key, mode) {
 function createDeleteSubBtn(){
 	const btn = document.createElement("button");
 	btn.classList.add("del-sub-btn");
-	btn.insertAdjacentText("beforeend", "-");
+	btn.insertAdjacentText("beforeend", "");
 	btn.addEventListener("click", (e) => {
 		callBackDelSubBlock(btn);
 	});
@@ -160,7 +160,7 @@ function createDeleteSubBtn(){
 function createDeleteMainBtn(){
 	const btn = document.createElement("button");
 	btn.classList.add("del-main-btn");
-	btn.insertAdjacentText("beforeend", "-");
+	btn.insertAdjacentText("beforeend", "");
 	btn.addEventListener("click", (e) => {
 		callBackDelMainBlock(btn);
 	});

@@ -22,12 +22,12 @@ rgba(183,190,232,255) title color
 	width: 50%;
 	margin: 50px auto;
 	border-radius: 25px;
-	box-shadow: 10px 10px 5px rgba(191,195,220,255);
+	box-shadow: 5px 5px 5px rgba(191,195,220,255);
 }
 
 .title-name {
 	font-size: 50px;
-	font-weight: bold;
+	font-weight: 500;
 	text-align: center;
 	color: rgba(47,58,116,255);
 	padding-top: 10px;
@@ -151,20 +151,24 @@ rgba(183,190,232,255) title color
 }
 .del-sub-btn{
 	float: right;
+    cursor: pointer;
+	border: none;
+	background-image: url("/images/del-sub.png");
+	background-size: cover;
+	width: 18px;
+	height: 18px;
+	background-color: transparent;
 }
 
 .del-main-btn{
 	float: right;
-	background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
     cursor: pointer;
-    overflow: hidden;
-    outline: none;
-	color: white;
-	font-size: 20px;
-	font-weight: bold;
-	text-shadow: 0px 0px 3px white;
+	border: none;
+	background-image: url("/images/del.png");
+	background-size: cover;
+	width: 25px;
+	height: 25px;
+	background-color: transparent;
 }
 
 p{
