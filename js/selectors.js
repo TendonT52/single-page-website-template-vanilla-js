@@ -1,5 +1,5 @@
 import { callBackAddMainBlock } from "./controller.js";
-import { generateSolution } from "./showresult.js";
+import { generateSolution } from "./calculateGroup.js";
 
 export let input_container;
 export let result_container;

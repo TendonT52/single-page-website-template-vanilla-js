@@ -12,16 +12,6 @@ html {
 	*/
 }
 
-/*
-@keyframes color {
-	0%   { background: #33CCCC; }
-	20%  { background: #0206f9; }
-	40%  { background: #cd04fa; }
-	60%  { background: #16bdff; }
-	80%  { background: #7c97f9; }
-	100% { background: #f900bf; }
-}
-*/
 .banner {
 	width: 500px;
 	height: 120px;
@@ -179,4 +169,33 @@ p{
 
 h3{
 	display: inline;
+}
+
+/*
+for display result
+*/
+
+.container2 {
+	
+}
+
+.result-banner {
+	width: fit-content;
+	height: 50px;
+	text-align: center;
+}
+
+#inputGroup {
+	width: 80px;
+	height: 40px;
+}
+
+.genButton{
+	width: 80px;
+	height: 40px;
+}
+
+.container3 {
+	display: flex;
+	flex-wrap: wrap;
 }
