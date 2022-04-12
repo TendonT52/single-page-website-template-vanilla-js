@@ -1,14 +1,12 @@
 import { callBackAddMainBlock } from "./controller.js";
+import { generateSolution } from "./showresult.js";
 
 export let input_container;
 export let result_container;
 export let add_main_block;
 export let btn_Result;
 export let tableShow;
-
-import {
-	generateSolution
-} from "./showresult.js";
+export let numberOfGroup;
 
 export function initSelector() {
 	input_container = document.querySelectorAll(".container")[0];
@@ -21,8 +19,9 @@ export function initSelector() {
 
 function initBtnResult(){
 	btn_Result.addEventListener('click', () => {
+		numberOfGroup = document.getElementById("inputGroup").valueAsNumber ;
+		generateSolution(numberOfGroup) ;
 		tableShow.style.display = 'block' ;
-		generateSolution() ;
 	});
 	initAddMainBlock();
 }

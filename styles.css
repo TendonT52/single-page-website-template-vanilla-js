@@ -12,6 +12,7 @@ html {
 	*/
 }
 
+/*
 @keyframes color {
 	0%   { background: #33CCCC; }
 	20%  { background: #0206f9; }
@@ -20,7 +21,7 @@ html {
 	80%  { background: #7c97f9; }
 	100% { background: #f900bf; }
 }
-
+*/
 .banner {
 	width: 500px;
 	height: 120px;
