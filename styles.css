@@ -87,6 +87,8 @@ rgba(183,190,232,255) title color
 	margin: 20px;
 	padding: 10px;
 	width: 250px;
+	border-radius: 15px;
+	box-shadow: 3px 3px 2px rgba(191,195,220,255);
 }
 
 .top-name {
@@ -153,6 +155,16 @@ rgba(183,190,232,255) title color
 
 .del-main-btn{
 	float: right;
+	background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 0px 3px white;
 }
 
 p{
