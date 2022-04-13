@@ -176,7 +176,7 @@ for display result (in html)
 */
 
 .container2 {
-	
+	font: optional;
 }
 
 .result-banner {
@@ -204,7 +204,7 @@ for display result (in html)
  show result in showResult.js
  */
 
- .main-result-block {
+ #sub_block {
 	background-color: rgb(70, 125, 245);
 	margin: 10px;
 	padding: 10px;
@@ -212,14 +212,9 @@ for display result (in html)
 	border-radius: 15px 15px 15px 15px;
 }
 
-.sub-result-block {
+#sub_sub_block {
 	background-color: rgb(160, 200, 246);
 	padding: 10px;
 	margin: 10px ;
 	border-radius: 15px 15px 15px 15px;
-}
-
-#contain3 {
-	display: flex;
-	flex-wrap: wrap;
 }
