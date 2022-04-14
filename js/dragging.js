@@ -1,6 +1,6 @@
 import { addMode, delMode, persons, updatePerson } from "./model.js";
 import { add_main_block } from "./selectors.js";
-import { oppositeMode } from "./util.js";
+import { convertformMainToPerson, oppositeMode } from "./util.js";
 
 let draggingSub = null;
 let draggingMain = null;
@@ -15,13 +15,34 @@ export function callBackSubBlockDragStart(name, element) {
 		name: name,
 		element: element,
 	};
+	// console.log(draggingSub);
+	// convertformMainToPerson(element.parentNode.parentNode);
 }
 
-export function callBackSubBlockDragStop(key, name, element) {
+export function callBackSubBlockDragStop(name, element) {
 	if (lastmidName == null) return;
-	console.log(persons.get(lastmidName));
-	console.log(persons.get(draggingSub.key));
-	updatePerson(lastmidName, persons.get(lastmidName));
+	const tmp = {
+		key: element.parentNode.parentNode
+			.querySelector(".top-name")
+			.querySelector("h3").textContent,
+		name: name,
+		element: element,
+	};
+	// console.log(draggingSub.key, persons.get(draggingSub.key));
+	// console.log(tmp.key, persons.get(tmp.key));
+	delMode(
+		draggingSub.key,
+		draggingSub.name,
+		draggingSub.element.parentNode.className.split(" ")[0]
+	);
+	persons.set(tmp.key, convertformMainToPerson(element.parentNode.parentNode));
+	// console.log(draggingSub.key, persons.get(draggingSub.key));
+	// console.log(tmp.key, persons.get(tmp.key));
+	// console.log(tmp);
+	// convertformMainToPerson(element.parentNode.parentNode);
+	// console.log(persons.get(lastmidName));
+	// console.log(persons.get(draggingSub.key));
+	updatePerson(tmp.key, persons.get(tmp.key));
 	updatePerson(draggingSub.key, persons.get(draggingSub.key));
 	draggingSub = null;
 }
@@ -36,35 +57,24 @@ export function callBackNameBlockDragStop(key) {
 
 export function callBackMidBlockDragOver(key, mode, element, event) {
 	lastmidName = key;
-	if (draggingSub == null) return;
-	if (key == draggingSub.name) return;
-	let isRe = false;
-	element.querySelectorAll(".sub-block").forEach((subblock) => {
-		if (subblock.isSameNode(draggingSub.element)) return;
-		if (draggingSub.name == subblock.textContent) {
-			isRe = true;
+	if (
+		!element.parentNode.isSameNode(draggingSub.element.parentNode.parentNode)
+	) {
+		if (key == draggingSub.name) return;
+		if (
+			!persons.get(key)[mode].reduce((p, c) => {
+				return p && c != draggingSub.name;
+			}, true)
+		)
 			return;
-		}
-	});
-	if (isRe) return;
-	let isOp = false;
-	element.parentNode
-		.querySelector("." + oppositeMode(mode))
-		.querySelectorAll(".sub-block")
-		.forEach((subblock) => {
-			if (subblock.isSameNode(draggingSub.element)) return;
-			if (draggingSub.name == subblock.textContent) {
-				isOp = true;
-				return;
-			}
-		});
-	if (isOp) return true;
+		if (
+			!persons.get(key)[oppositeMode(mode)].reduce((p, c) => {
+				return p && c != draggingSub.name;
+			}, true)
+		)
+			return;
+	}
 
-	delMode(
-		draggingSub.key,
-		draggingSub.name,
-		draggingSub.element.parentNode.className.split(" ")[0]
-	);
 	event.preventDefault();
 	const blockAfterDraggingBlock = getBlockAfterDraggingBlock(
 		element,
@@ -78,7 +88,6 @@ export function callBackMidBlockDragOver(key, mode, element, event) {
 			element.querySelector(".add-sub-block")
 		);
 	}
-	addMode(key, draggingSub.name, mode);
 }
 
 export function getBlockAfterDraggingBlock(mid_block, yDraggingBlock) {
