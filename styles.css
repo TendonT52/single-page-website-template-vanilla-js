@@ -73,8 +73,12 @@ rgba(183,190,232,255) title color
 
 .container {
 	/* */
-	display: flex; /*change to grid*/
+	margin: auto;
+	width: 70%;
+	display: flex; 
 	flex-wrap: wrap;
+	justify-content: center;
+	padding-bottom: 25px;
 }
 
 .main-block {
@@ -122,7 +126,7 @@ rgba(183,190,232,255) title color
 
 .add-main-block {
 	background-color: rgba(237,240,249,255);
-	margin: 20px;
+	margin: 10px;
 	padding: 10px;
 	width: 250px;
 	border-radius: 15px;
@@ -229,28 +233,51 @@ for display result (in html)
 */
 
 .container2 {
+	padding-top: 50px;
+	padding-bottom: 25px;
 	font: optional;
+	background-color: rgb(248, 248, 248);
 }
 
 .result-banner {
-	width: fit-content;
-	height: 50px;
+	font-size: 50px;
+	font-weight: 500;
 	text-align: center;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	background-color: rgb(76, 95, 197);
+	width: 50%;
+	margin: 0px auto;
+	border-radius: 25px;
+	box-shadow: 5px 5px 5px rgba(191,195,220,255);
 }
 
 #inputGroup {
-	width: 80px;
-	height: 40px;
+	width: 66px;
+	height: 33px;
 }
 
 .genButton{
-	width: 80px;
+	width: auto;
 	height: 40px;
+	background-color: rgb(76, 95, 197);
+	box-shadow: 5px 5px 5px rgba(191,195,220,255);
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	border: none;
+	margin: auto 10px;
+	
 }
 
 .container3 {
 	display: flex;
 	flex-wrap: wrap;
+	background-color: rgb(248, 248, 248);
+	justify-content: center;
+	padding: 0px 15%;
 }
 
  /*
@@ -258,7 +285,7 @@ for display result (in html)
  */
 
  #sub_block {
-	background-color: rgb(70, 125, 245);
+	background-color: rgb(218, 223, 243);
 	margin: 10px;
 	padding: 10px;
 	width: 250px;
@@ -266,8 +293,9 @@ for display result (in html)
 }
 
 #sub_sub_block {
-	background-color: rgb(160, 200, 246);
+	background-color: rgb(112, 127, 210);
 	padding: 10px;
 	margin: 10px ;
 	border-radius: 15px 15px 15px 15px;
+	color: white;
 }
