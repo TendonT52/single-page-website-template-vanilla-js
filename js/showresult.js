@@ -6,6 +6,11 @@ export function addElement() {
     for (var idx = 0; idx < AnswerGroup.length; idx++) {
         var sub_block = document.createElement('div');
         sub_block.id = "sub_block" ;
+        var header_block = document.createElement('h1');
+        header_block.id = "header_block"
+        var header = document.createTextNode("Group "+ (idx+1)) ;
+        header_block.appendChild(header) ;
+        sub_block.appendChild(header_block) ;
         for (var idx2 = 0; idx2 < AnswerGroup[idx].length; idx2++) {
             var text_node = document.createTextNode(AnswerGroup[idx][idx2]) ;
             var sub_sub_block = document.createElement('div');
