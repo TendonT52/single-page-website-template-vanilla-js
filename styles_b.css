@@ -32,57 +32,14 @@ rgba(183,190,232,255) title color
 	color: rgba(47,58,116,255);
 	padding-top: 10px;
 	padding-bottom: 10px;
-	/*
-	background: #33CCCC;
-  	animation: color 10s infinite linear;
-	*/
-	/*
-	text-align: center;
-	*/
-}
-
-.banner {
-	width: 500px;
-	height: 120px;
-	margin: auto;
-	text-align: center;
-	background-color: rgb(223, 248, 6);
-	border: 5px solid red;
-	border-radius: 15px 15px 15px 15px;
-}
-
-.sub1-banner {
-	text-shadow: 3px 4px 5px #fa9f01;
-}
-
-.sub2-banner {
-	text-decoration: underline;
-}
-
-.button-style {
-	background-color: rgb(219, 158, 254);
-	border-radius: 15px 15px 15px 15px;
-}
-
-.generate-button-style {
-	width: 120px;
-	height: 80px;
-	background-color: rgb(219, 158, 254);
-	border-radius: 15px 15px 15px 15px;
 }
 
 .container {
-	/* */
-	margin: auto;
-	width: 70%;
-	display: flex; 
+	display: flex; /*change to grid*/
 	flex-wrap: wrap;
-	justify-content: center;
-	padding-bottom: 25px;
 }
 
 .main-block {
-	/* */
 	background-color: rgba(237,240,249,255);
 	margin: 10px;
 	padding: 10px;
@@ -92,7 +49,6 @@ rgba(183,190,232,255) title color
 }
 
 .like {
-	/* */
 	background-color: rgba(163,210,194,255);
 	padding: 10px;
 	border-radius: 15px;
@@ -101,7 +57,6 @@ rgba(183,190,232,255) title color
 }
 
 .dislike {
-	/* */
 	background-color: rgba(244,165,152,255);
 	padding: 10px;
 	border-radius: 15px;
@@ -115,18 +70,17 @@ rgba(183,190,232,255) title color
 	margin-bottom: 5px;
 	border-radius: 10px;
 }
- 
+
 .add-sub-block {
 	position: relative;
 	background-color: rgba(255, 255, 255, 0.445);
 	padding: 10px;
 	margin-bottom: 5px;
-	border-radius: 10px 10px 10px 10px;
-}
+} 
 
 .add-main-block {
 	background-color: rgba(237,240,249,255);
-	margin: 10px;
+	margin: 20px;
 	padding: 10px;
 	width: 250px;
 	border-radius: 15px;
@@ -138,8 +92,6 @@ rgba(183,190,232,255) title color
 	padding: 20px;
 	margin-bottom: 5px;
 	border-radius: 15px;
-	/* (shadow)
-	box-shadow: 5px 5px 30px rgba(6, 6, 6, 0.5); */
 }
 
 .add-sub-block select {
@@ -187,10 +139,6 @@ rgba(183,190,232,255) title color
   display: block;
 }
 
-.tableShow{
-	display: none;
-}
-
 .input-name{
 	/* add person block*/
 	font-size: 16px;
@@ -225,77 +173,5 @@ p{
 
 h3{
 	display: inline;
-	color: white;
-}
-
-/*
-for display result (in html)
-*/
-
-.container2 {
-	padding-top: 50px;
-	padding-bottom: 25px;
-	font: optional;
-	background-color: rgb(248, 248, 248);
-}
-
-.result-banner {
-	font-size: 50px;
-	font-weight: 500;
-	text-align: center;
-	color: white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
-	background-color: rgb(76, 95, 197);
-	width: 50%;
-	margin: 0px auto;
-	border-radius: 25px;
-	box-shadow: 5px 5px 5px rgba(191,195,220,255);
-}
-
-#inputGroup {
-	width: 66px;
-	height: 33px;
-}
-
-.genButton{
-	width: auto;
-	height: 40px;
-	background-color: rgb(76, 95, 197);
-	box-shadow: 5px 5px 5px rgba(191,195,220,255);
-	border-radius: 10px;
-	color: white;
-	cursor: pointer;
-	border: none;
-	margin: auto 10px;
-	
-}
-
-.container3 {
-	display: flex;
-	flex-wrap: wrap;
-	background-color: rgb(248, 248, 248);
-	justify-content: center;
-	padding: 0px 15%;
-}
-
- /*
- show result in showResult.js
- */
-
- #sub_block {
-	background-color: rgb(218, 223, 243);
-	margin: 10px;
-	padding: 10px;
-	width: 250px;
-	border-radius: 15px 15px 15px 15px;
-}
-
-#sub_sub_block {
-	background-color: rgb(112, 127, 210);
-	padding: 10px;
-	margin: 10px ;
-	border-radius: 15px 15px 15px 15px;
 	color: white;
 }
