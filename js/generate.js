@@ -22,6 +22,10 @@ export function createBlock(key) {
 	mainBlock.appendChild(nameBlock);
 
 	const likeBlock = createMidBlock(key, "like");
+	var likeTitleBlock = document.createElement('div');
+	likeTitleBlock.id="likeTitle";
+	likeTitleBlock.appendChild(document.createTextNode("Likes"));
+	likeBlock.appendChild(likeTitleBlock);
 	const addLikeBlock = createDropDownBlock(key, "like");
 	likeBlock.appendChild(addLikeBlock);
 	persons.get(key).like.forEach((name) => {
@@ -30,6 +34,10 @@ export function createBlock(key) {
 	mainBlock.appendChild(likeBlock);
 
 	const dislikeBlock = createMidBlock(key, "dislike");
+	var dislikeTitleBlock = document.createElement('div');
+	dislikeTitleBlock.id="dislikeTitle";
+	dislikeTitleBlock.appendChild(document.createTextNode("Dislikes"));
+	dislikeBlock.appendChild(dislikeTitleBlock);
 	const addDisLikeBlock = createDropDownBlock(key, "dislike");
 	dislikeBlock.appendChild(addDisLikeBlock);
 	persons.get(key).dislike.forEach((name) => {

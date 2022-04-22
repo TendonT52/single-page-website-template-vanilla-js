@@ -22,7 +22,9 @@ rgba(183,190,232,255) title color
 	width: 50%;
 	margin: 50px auto;
 	border-radius: 25px;
-	box-shadow: 5px 5px 5px rgba(191,195,220,255);
+	box-shadow: 7px 7px 5px rgba(191,195,220,255);
+	/*border-style: solid;
+	border-color: rgba(237,240,249,255);*/
 }
 
 .title-name {
@@ -32,6 +34,7 @@ rgba(183,190,232,255) title color
 	color: rgba(47,58,116,255);
 	padding-top: 10px;
 	padding-bottom: 10px;
+	/*text-shadow: -2px 0 rgba(237,240,249,255), 0 2px rgba(237,240,249,255), 2px 0 rgba(237,240,249,255), 0 -2px rgba(237,240,249,255);*/
 	/*
 	background: #33CCCC;
   	animation: color 10s infinite linear;
@@ -257,6 +260,8 @@ for display result (in html)
 #inputGroup {
 	width: 66px;
 	height: 33px;
+	border-radius: 10px;
+	border-width: 1px;
 }
 
 .genButton{
@@ -269,7 +274,10 @@ for display result (in html)
 	cursor: pointer;
 	border: none;
 	margin: auto 10px;
-	
+	font-size: 16px;
+	font-weight: 500;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .container3 {
@@ -301,5 +309,20 @@ for display result (in html)
 }
 
 #header_block {
+	padding-left: 10px;
 	color: rgb(78, 75, 177);
+}
+
+#likeTitle {
+	padding: 5px 10px;
+	color: black;
+	font-size: 1.17em;
+	font-weight: 500;
+}
+
+#dislikeTitle {
+	padding: 5px 10px;
+	color: black;
+	font-size: 1.17em;
+	font-weight: 500;
 }
