@@ -18,6 +18,7 @@ export function addNewMainBlock(key) {
 export function callBackAddMainBlock() {
 	const key = add_main_block.querySelector(".input-name").value;
 	if (key == "") return;
+	if (persons.has(key)) return;
 	add_main_block.querySelector(".input-name").value = '';
 	addPerson(key, createPerson());
 	const element = createBlock(key);
