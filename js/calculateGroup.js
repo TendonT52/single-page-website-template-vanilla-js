@@ -12,7 +12,7 @@ var dataCollected = [] ;
 export function generateSolution(InputGroup) {
     document.getElementById('contain3').innerHTML = "";
     NumberOfGroup = InputGroup ;
-    console.log(" --> " + NumberOfGroup) ;
+    //console.log(" --> " + NumberOfGroup) ;
     AnswerGroup = [] ;
     mappingPeopleWithIndex() ;
     for (var i = 0; i < NumberOfPeople; i++) {
@@ -62,11 +62,12 @@ export function generateSolution(InputGroup) {
         console.log(RankingTable[i]) ;
     }
     console.log("-------") ;
+    */
+   /*
     for (var i = 0; i < RankingTable.length; i++) {
         console.log(dataCollected[i]) ;
     }
     */
-
     if (NumberOfGroup > NumberOfPeople) {
         addElement() ;
         alert("Error!  Maximum number of students is now : " + NumberOfPeople) ;
@@ -110,7 +111,7 @@ export function generateSolution(InputGroup) {
         }
 
         //console.log(IDXofAnswer) ;
-        console.log(AnswerGroup) ;
+        //console.log(AnswerGroup) ;
         addElement() ;
         /*
         var str = "" ;
@@ -188,7 +189,8 @@ function maximumSpaningTree(answer) {
         graphData[parent[i]].push(i) ;
         sum += dataCollected[parent[i]][i] ;
     }
-    console.log(sum) ;
+    //console.log(parent) ;
+    //console.log(sum) ;
 
     //------------Create Answer Array-------------
     for (var i = 0; i < NumberOfPeople; i++) {

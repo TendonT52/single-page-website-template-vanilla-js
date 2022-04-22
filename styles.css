@@ -326,3 +326,11 @@ for display result (in html)
 	font-size: 1.17em;
 	font-weight: 500;
 }
+
+.enter_num {
+	color: black;
+}
+
+.input_num {
+	font-size: large;
+}
