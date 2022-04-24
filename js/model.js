@@ -81,10 +81,15 @@ export function addMode(key, name, mode) {
 }
 
 export function delMode(key, name, mode) {
-	// console.log("del1", key, name ,mode);
-	// console.log(persons.get(key));
+	console.log("del1", key, name ,mode);
+	console.log(persons.get(key));
 	if (!persons.has(key)) return false;
-	// console.log("del2", key, name ,mode);
-	persons.get(key)[mode] = persons.get(key)[mode].filter(e => e != name)
+	persons.get(key)[mode] = persons.get(key)[mode].filter(e => {
+		console.log(e, name)
+		console.log(e != name)
+		return e != name
+	})
+	console.log("del2", key, name ,mode);
+	console.log(persons.get(key));
 	return true;
 }

@@ -8,6 +8,7 @@ let draggingName = null;
 let lastmidName = null;
 
 export function callBackSubBlockDragStart(name, element) {
+	console.log(persons)
 	draggingSub = {
 		key: element.parentNode.parentNode
 			.querySelector(".top-name")
@@ -15,11 +16,17 @@ export function callBackSubBlockDragStart(name, element) {
 		name: name,
 		element: element,
 	};
+	delMode(
+		draggingSub.key,
+		draggingSub.name,
+		draggingSub.element.parentNode.className.split(" ")[0]
+	);
 	// console.log(draggingSub);
 	// convertformMainToPerson(element.parentNode.parentNode);
 }
 
 export function callBackSubBlockDragStop(name, element) {
+	console.log(persons)
 	if (lastmidName == null) return;
 	const tmp = {
 		key: element.parentNode.parentNode
@@ -30,11 +37,7 @@ export function callBackSubBlockDragStop(name, element) {
 	};
 	// console.log(draggingSub.key, persons.get(draggingSub.key));
 	// console.log(tmp.key, persons.get(tmp.key));
-	delMode(
-		draggingSub.key,
-		draggingSub.name,
-		draggingSub.element.parentNode.className.split(" ")[0]
-	);
+
 	persons.set(tmp.key, convertformMainToPerson(element.parentNode.parentNode));
 	// console.log(draggingSub.key, persons.get(draggingSub.key));
 	// console.log(tmp.key, persons.get(tmp.key));
