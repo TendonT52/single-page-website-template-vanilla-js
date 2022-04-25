@@ -1,6 +1,4 @@
 import { persons } from "./model.js";
-import { numberOfGroup } from "./selectors.js";
-import { addElement } from "./showResult.js" ;
 
 export var NumberOfPeople = persons.size ;
 export var AnswerGroup = [] ;
@@ -8,12 +6,12 @@ var NumberOfGroup ;
 var ArrayPeople = [] ;
 var RankingTable = [] ;
 var dataCollected = [] ;
+var AnswerGroup = [] ;
 
 export function generateSolution(InputGroup) {
     document.getElementById('contain3').innerHTML = "";
     NumberOfGroup = InputGroup ;
     //console.log(" --> " + NumberOfGroup) ;
-    AnswerGroup = [] ;
     mappingPeopleWithIndex() ;
     for (var i = 0; i < NumberOfPeople; i++) {
         RankingTable[i] = Array(NumberOfPeople).fill(1);
@@ -223,4 +221,25 @@ function myRandom(color) {
     }
     var newArrayIDX = Math.floor(Math.random() * newArray.length);
     return newArray[newArrayIDX] ;
+}
+
+function addElement() {
+    var result_block = document.getElementById('contain3') ;
+    for (var idx = 0; idx < AnswerGroup.length; idx++) {
+        var sub_block = document.createElement('div');
+        sub_block.id = "sub_block" ;
+        var header_block = document.createElement('h1');
+        header_block.id = "header_block"
+        var header = document.createTextNode("Group "+ (idx+1)) ;
+        header_block.appendChild(header) ;
+        sub_block.appendChild(header_block) ;
+        for (var idx2 = 0; idx2 < AnswerGroup[idx].length; idx2++) {
+            var text_node = document.createTextNode(AnswerGroup[idx][idx2]) ;
+            var sub_sub_block = document.createElement('div');
+            sub_sub_block.id = "sub_sub_block" ;
+            sub_sub_block.appendChild(text_node) ;
+            sub_block.appendChild(sub_sub_block) ;
+        }
+        result_block.appendChild(sub_block) ;
+    }
 }
