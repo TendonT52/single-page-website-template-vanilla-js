@@ -18,6 +18,7 @@ rgba(183,190,232,255) title color
 */
 
 /*container*/
+
 .container {
 	margin: auto;
 	width: 70%;
@@ -46,7 +47,27 @@ rgba(183,190,232,255) title color
 	padding: 0px 15%;
 }
 
-/*title*/
+.container4 {
+	background-color: rgb(248, 248, 248);
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	row-gap: 50px;
+	justify-content: center;
+	align-items: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.container5 {
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/*banner*/
 
 .title-block {
 	background-color: rgba(183,190,232,255);
@@ -63,7 +84,7 @@ rgba(183,190,232,255) title color
 }
 
 .title-name {
-	font-size: max(4vw,25px);
+	font-size: max(4vw,30px);
 	font-weight: 500;
 	display: inline-block;
 	text-align: center;
@@ -74,14 +95,21 @@ rgba(183,190,232,255) title color
 	align-items: center;
 }
 
-.container {
-	/* */
-	margin: auto;
-	width: 70%;
-	display: flex; 
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-bottom: 25px;
+.result-banner {
+	font-size: max(5vw,30px);
+	font-weight: 500;
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: inline-block;
+	background-size: contain;
+	background-color: rgb(76, 95, 197);
+	width: 50% ;
+	min-width: 250px;
+	margin: 0px auto;
+	border-radius: 25px;
+	box-shadow: 5px 5px 5px rgba(191,195,220,255);
 }
 
 .main-block {
@@ -238,22 +266,6 @@ h3{
 /*
 for display result (in html)
 */
-.result-banner {
-	font-size: 5vw;
-	font-weight: 500;
-	text-align: center;
-	color: white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	display: inline-block;
-	background-size: contain;
-
-	background-color: rgb(76, 95, 197);
-	width: 50% ;
-	margin: 0px auto;
-	border-radius: 25px;
-	box-shadow: 5px 5px 5px rgba(191,195,220,255);
-}
 
 #inputGroup {
 	width: 66px;
