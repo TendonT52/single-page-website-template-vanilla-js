@@ -112,6 +112,52 @@ rgba(183,190,232,255) title color
 	box-shadow: 5px 5px 5px rgba(191,195,220,255);
 }
 
+/*button*/
+
+.btn-add-main-block {
+	background-color: rgb(245,247,252);
+	border-radius: 10px;
+	margin-top: 5px;
+	width: 250px;
+	cursor: pointer;
+	border: none;
+	/*
+	float: center;
+	background-image: url("/images/add.png");
+	background-size: cover;
+	width: 18px;
+	height: 18px;
+	*/
+	font-size: 30px;
+	font-weight: bolder;
+	color: black;
+	text-align: center;
+}
+
+.del-sub-btn{
+	float: right;
+    cursor: pointer;
+	border: none;
+	background-image: url("/images/del-sub.png");
+	background-size: cover;
+	width: 18px;
+	height: 18px;
+	background-color: transparent;
+}
+
+.del-main-btn{
+	float: right;
+    cursor: pointer;
+	border: none;
+	background-image: url("/images/del.png");
+	background-size: cover;
+	width: 25px;
+	height: 25px;
+	background-color: transparent;
+}
+
+ /*block*/
+
 .main-block {
 	/* */
 	background-color: rgba(237,240,249,255);
@@ -163,7 +209,7 @@ rgba(183,190,232,255) title color
 	padding: 10px;
 	border-radius: 15px;
 	box-shadow: 3px 3px 2px rgba(191,195,220,255);
-
+	justify-content: center;
 }
 
 .top-name {
@@ -192,10 +238,12 @@ rgba(183,190,232,255) title color
 	border: none;
 	display: block;
 	border-radius: 15px;
+	cursor: pointer;
 }
 
 .myInput:focus {
 	outline: 3px solid #ddd;
+	cursor: pointer;
 }
 
 .dropdown-content .dropdown-item:hover {
@@ -209,6 +257,7 @@ rgba(183,190,232,255) title color
 	min-width: 230px;
 	border: 1px solid #ddd;
 	z-index: 1;
+	cursor: pointer;
 }
 
 .show {
@@ -231,27 +280,6 @@ rgba(183,190,232,255) title color
 	font-size: 16px;
 	padding: 10px 10px 10px 10px;
 	border: none;
-}
-.del-sub-btn{
-	float: right;
-    cursor: pointer;
-	border: none;
-	background-image: url("/images/del-sub.png");
-	background-size: cover;
-	width: 18px;
-	height: 18px;
-	background-color: transparent;
-}
-
-.del-main-btn{
-	float: right;
-    cursor: pointer;
-	border: none;
-	background-image: url("/images/del.png");
-	background-size: cover;
-	width: 25px;
-	height: 25px;
-	background-color: transparent;
 }
 
 p{
@@ -297,7 +325,7 @@ for display result (in html)
  show result in showResult.js
  */
 
- #sub_block {
+#sub_block {
 	background-color: rgb(218, 223, 243);
 	margin: 10px;
 	padding: 10px;
