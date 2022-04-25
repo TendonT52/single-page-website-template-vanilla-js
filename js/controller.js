@@ -18,6 +18,10 @@ export function addNewMainBlock(key) {
 export function callBackAddMainBlock() {
 	const key = add_main_block.querySelector(".input-name").value;
 	if (key == "") return;
+	if (key.length>13) {
+		alert("Error! Maximum 13 characters name allowed");
+		return;
+	}
 	if (persons.has(key)) {
 		alert("Error! Duplicate name") ;
 		return;

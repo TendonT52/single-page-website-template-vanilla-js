@@ -11,6 +11,7 @@ var AnswerGroup = [] ;
 export function generateSolution(InputGroup) {
     document.getElementById('contain3').innerHTML = "";
     NumberOfGroup = InputGroup ;
+    AnswerGroup = [] ;
     //console.log(" --> " + NumberOfGroup) ;
     mappingPeopleWithIndex() ;
     for (var i = 0; i < NumberOfPeople; i++) {
