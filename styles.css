@@ -112,51 +112,7 @@ rgba(183,190,232,255) title color
 	box-shadow: 5px 5px 5px rgba(191,195,220,255);
 }
 
-/*button*/
-
-.btn-add-main-block {
-	background-color: rgb(245,247,252);
-	border-radius: 10px;
-	margin-top: 5px;
-	width: 250px;
-	cursor: pointer;
-	border: none;
-	/*
-	float: center;
-	background-image: url("/images/add.png");
-	background-size: cover;
-	width: 18px;
-	height: 18px;
-	*/
-	font-size: 30px;
-	font-weight: bolder;
-	color: black;
-	text-align: center;
-}
-
-.del-sub-btn{
-	float: right;
-    cursor: pointer;
-	border: none;
-	background-image: url("/images/del-sub.png");
-	background-size: cover;
-	width: 18px;
-	height: 18px;
-	background-color: transparent;
-}
-
-.del-main-btn{
-	float: right;
-    cursor: pointer;
-	border: none;
-	background-image: url("/images/del.png");
-	background-size: cover;
-	width: 25px;
-	height: 25px;
-	background-color: transparent;
-}
-
- /*block*/
+/*block*/
 
 .main-block {
 	/* */
@@ -168,7 +124,6 @@ rgba(183,190,232,255) title color
 	border-radius: 15px;
 	box-shadow: 3px 3px 2px rgba(191,195,220,255);
 }
-
 
 .like {
 	/* */
@@ -282,6 +237,73 @@ rgba(183,190,232,255) title color
 	border: none;
 }
 
+/*button*/
+
+.del-sub-btn{
+	float: right;
+    cursor: pointer;
+	border: none;
+	background-image: url("/images/del-sub.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 17px;
+	height: 17px;
+	background-color: transparent;
+}
+
+.del-main-btn{
+	float: right;
+    cursor: pointer;
+	border: none;
+	background-image: url("/images/del.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 25px;
+	height: 25px;
+	background-color: transparent;
+}
+
+
+.btn-add-main-block {
+	background-color: rgb(245,247,252);
+	border-radius: 10px;
+	margin-top: 5px;
+	width: 250px;
+	cursor: pointer;
+	border: none;
+	/*
+	float: center;
+	background-image: url("/images/add.png");
+	background-size: cover;
+	width: 18px;
+	height: 18px;
+	*/
+	font-size: 30px;
+	font-weight: bolder;
+	color: black;
+	text-align: center;
+}
+
+.genButton {
+	width: auto;
+	height: 40px;
+	background-color: rgb(76, 95, 197);
+	box-shadow: 5px 5px 5px rgba(191,195,220,255);
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	border: none;
+	margin: auto 10px;
+	font-size: 16px;
+	font-weight: 500;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*others*/
+
 p{
 	display: inline;
 }
@@ -302,23 +324,6 @@ for display result (in html)
 	border-width: 1px;
 }
 
-.genButton{
-	width: auto;
-	height: 40px;
-	background-color: rgb(76, 95, 197);
-	box-shadow: 5px 5px 5px rgba(191,195,220,255);
-	border-radius: 10px;
-	color: white;
-	cursor: pointer;
-	border: none;
-	margin: auto 10px;
-	font-size: 16px;
-	font-weight: 500;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
 
 
  /*
